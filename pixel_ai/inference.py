@@ -39,23 +39,32 @@ def run_llm():
                 console.print("[bold yellow]Exiting Pixel-AI. Have a great day![/bold yellow]")
                 break
 
-            # AI Thinking State and Streaming feel
+            # Thinking state
             with console.status("[italic blue]Pixel is thinking...", spinner="bouncingBall"):
-                output = model(
+                stream = model(
                     prompt, 
                     max_tokens=MAX_TOKENS, 
                     temperature=TEMPERATURE,
-                    stop=["<|im_end|>", "You:", "Pixel-AI:"]
+                    stop=["<|im_end|>", "You:", "Pixel-AI:"],
+                    stream=True
                 )
-                response = output['choices'][0]['text'].strip()
 
-            # Beautiful Result Panel
-            console.print(Panel(
-                Markdown(response),
+            # Real-time Typing Effect with Rich Live
+            response_text = ""
+            panel = Panel(
+                Markdown(""),
                 title="[bold blue]Pixel-AI[/bold blue]",
                 border_style="bright_blue",
                 padding=(1, 2)
-            ))
+            )
+
+            with Live(panel, console=console, refresh_per_second=20) as live:
+                for chunk in stream:
+                    text = chunk['choices'][0]['text']
+                    response_text += text
+                    # Update the panel content
+                    panel.renderable = Markdown(response_text)
+                    live.refresh()
             
     except KeyboardInterrupt:
         console.print("\n[bold yellow]KeyboardInterrupt detected. Exiting...[/bold yellow]")
