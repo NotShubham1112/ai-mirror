@@ -53,18 +53,18 @@ llmemo/
 ## 🚀 Quick Start
 
 ### 1. Installation & Setup
-The fastest way for others to install **Pixel-AI** is directly from GitHub:
+The fastest way for others to install **Pixel-AI** is directly from PyPI:
 
 ```bash
-# 1. Install the package directly
-pip install git+https://github.com/NotShubham1112/pixel-ai.git
+# 1. Install the package
+pip install pixel-ai
 
 # 2. Download the model (350MB)
 pixel-ai install
 ```
 
 > [!TIP]
-> This method doesn't require cloning the repository manually!
+> This is now the official, recommended way to install Pixel-AI!
 
 ### 2. Run the System
 Once installed, you can run it from anywhere:
@@ -73,6 +73,17 @@ Once installed, you can run it from anywhere:
 # Start the LLM inference
 pixel-ai run
 ```
+
+### 🛠 Troubleshooting (Windows)
+If you see `pixel-ai : The term 'pixel-ai' is not recognized`, use the direct python command instead:
+
+```powershell
+python -m pixel_ai.cli install
+python -m pixel_ai.cli run
+```
+
+> [!TIP]
+> This happens because your Python Scripts folder isn't in your Windows PATH. Using `python -m pixel_ai.cli` always works as long as `python` works!
 
 Alternatively, to run the **AI Mirror Chat UI**:
 ```bash

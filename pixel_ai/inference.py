@@ -1,3 +1,4 @@
+import os
 from llama_cpp import Llama
 from .config import MODEL_PATH, MAX_TOKENS, TEMPERATURE
 
