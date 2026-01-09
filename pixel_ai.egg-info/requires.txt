@@ -4,3 +4,4 @@ llama-cpp-python
 click
 numpy
 requests
+rich

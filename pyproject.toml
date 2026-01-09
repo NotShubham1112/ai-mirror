@@ -1,6 +1,6 @@
 [project]
 name = "pixel-ai"
-version = "0.1.1"
+version = "0.1.2"
 description = "Offline Raspberry Pi-optimized LLM for Emotion Mirror Project"
 authors = [{ name="Your Name" }]
 dependencies = [
@@ -9,7 +9,8 @@ dependencies = [
     "llama-cpp-python",
     "click",
     "numpy",
-    "requests"
+    "requests",
+    "rich"
 ]
 
 [project.scripts]
