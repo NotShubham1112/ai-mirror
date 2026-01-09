@@ -10,7 +10,7 @@ console = Console(theme=CUSTOM_THEME)
 
 @click.group()
 def cli():
-    """🎒 [bold accent]Pixel[/bold accent]: Your Adorable Offline Study Companion 🎓"""
+    """🎒 [bold accent]Pixel AI[/bold accent]: Your Adorable Offline Study Companion 🎓"""
     pass
 
 @cli.command()

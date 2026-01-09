@@ -37,7 +37,7 @@ def run_llm():
     
     console.clear()
     console.print(Panel(
-        Markdown("# 🎒 Pixel: Your Adorable Study Buddy\n*Your friendly offline school tutor!* ✨"),
+        Markdown("# 🎒 Pixel AI\n*Your friendly offline school tutor!* ✨"),
         subtitle="Type 'exit' to head home",
         border_style="accent",
         title_align="left",
@@ -70,7 +70,7 @@ def run_llm():
             response_text = ""
             panel = Panel(
                 Markdown(""),
-                title="[bold accent]Pixel the Tutor[/bold accent] 📚",
+                title="[bold accent]Pixel AI[/bold accent] 📚",
                 border_style="accent",
                 padding=(1, 2),
                 title_align="left"
