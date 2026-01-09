@@ -12,7 +12,7 @@ from pathlib import Path
 class MemoryManager:
     """Manages conversation memory with privacy controls."""
     
-    def __init__(self, storage_path: str = "./user_memory.json", max_short_term: int = 10):
+    def __init__(self, storage_path: str = "data/user_memory.json", max_short_term: int = 10):
         """
         Initialize memory manager.
         

@@ -13,7 +13,7 @@ import requests
 class KnowledgeBaseBuilder:
     """Build comprehensive knowledge base from various sources."""
     
-    def __init__(self, output_dir: str = "./knowledge_base"):
+    def __init__(self, output_dir: str = "../knowledge_base"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         self.total_size = 0

@@ -40,7 +40,7 @@ def main():
         from memory_manager import MemoryManager
         
         safety = SafetyFilter()
-        memory = MemoryManager(storage_path="ai_mirror_memory.json")
+        memory = MemoryManager(storage_path="data/ai_mirror_memory.json")
         print("   ✓ Safety Filter active")
         print(f"   ✓ Memory active ({memory.get_stats()['total_interactions']} interactions)")
     except ImportError as e:
