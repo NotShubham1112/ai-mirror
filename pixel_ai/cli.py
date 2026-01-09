@@ -2,34 +2,34 @@ import click
 import os
 from rich.console import Console
 from rich.panel import Panel
-from .inference import run_llm
+from rich.theme import Theme
+from .inference import run_llm, CUSTOM_THEME
 from .utils import download_model_if_needed
 
-console = Console()
+console = Console(theme=CUSTOM_THEME)
 
 @click.group()
 def cli():
-    """🚀 Pixel-AI: Professional Emotion Mirror LLM for Raspberry Pi"""
+    """🚀 [bold accent]Pixel-AI[/bold accent]: Professional Emotion Mirror LLM"""
     pass
 
 @cli.command()
 def run():
     """Run the AI companion in a beautiful terminal interface"""
-    # download_model_if_needed() is now handled inside run_llm or here
-    # To keep it clean, we'll call it here with a nice status
-    with console.status("[bold blue]Checking model status...", spinner="bouncingBar"):
+    with console.status("[bold accent]Checking model status...", spinner="bouncingBar"):
         download_model_if_needed()
     run_llm()
 
 @cli.command()
 def install():
     """Download local weights and set up the environment"""
-    with console.status("[bold green]Downloading Pixel-AI model weights...", spinner="earth"):
+    with console.status("[bold accent]Downloading Pixel-AI model weights...", spinner="earth"):
         download_model_if_needed()
     console.print(Panel(
-        "[bold green]Success![/bold green] Model installed and ready for local inference.",
-        title="Installation Complete",
-        border_style="green"
+        "[bold accent]Success![/bold accent] Model installed and ready for local inference.",
+        title="[bold accent]Installation Complete[/bold accent]",
+        border_style="accent",
+        title_align="left"
     ))
 
 if __name__ == "__main__":

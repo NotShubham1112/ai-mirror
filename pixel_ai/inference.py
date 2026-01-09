@@ -6,41 +6,55 @@ from rich.markdown import Markdown
 from rich.prompt import Prompt
 from rich.live import Live
 from rich.text import Text
+from rich.theme import Theme
 from .config import MODEL_PATH, MAX_TOKENS, TEMPERATURE
 
-console = Console()
+# Custom Theme: Orange accent (#C15F3C), Warm off-white (#faf9f5), Charcoal (#2b2b2b)
+CUSTOM_THEME = Theme({
+    "accent": "#C15F3C",          # Orange
+    "text": "#faf9f5",            # Warm off-white
+    "ui": "#2b2b2b",              # Charcoal
+    "markdown.h1": "bold #C15F3C",
+    "markdown.h2": "bold #C15F3C",
+    "markdown.h3": "bold #C15F3C",
+    "markdown.paragraph": "#faf9f5",
+})
+
+console = Console(theme=CUSTOM_THEME)
 
 def run_llm():
     if not os.path.exists(MODEL_PATH):
         console.print(Panel(
-            f"[bold red]Error:[/bold red] Model not found at [yellow]{MODEL_PATH}[/yellow].\n"
+            f"[bold red]Error:[/bold red] Model not found at [accent]{MODEL_PATH}[/accent].\n"
             "Please run [bold cyan]pixel-ai install[/bold cyan] first.",
             title="System Error",
             border_style="red"
         ))
         return
 
-    with console.status("[bold green]Initializing Pixel-AI engine...", spinner="dots"):
+    with console.status("[bold accent]Initializing Pixel-AI engine...", spinner="dots"):
         model = Llama(model_path=MODEL_PATH, verbose=False)
     
     console.clear()
     console.print(Panel(
-        Markdown("# 🧠 Pixel-AI: Emotion Mirror\n*Production-grade offline LLM interface*"),
+        Markdown("# 🧠 Pixel-AI: Emotion Mirror\n*Professional Grade AI Interface*"),
         subtitle="Type 'exit' to quit",
-        border_style="blue"
+        border_style="accent",
+        title_align="left",
+        subtitle_align="left"
     ))
 
     try:
         while True:
-            # Styled User Input
-            prompt = Prompt.ask("\n[bold cyan]You[/bold cyan]")
+            # Styled User Input - Left aligned
+            prompt = Prompt.ask("\n[bold accent]You[/bold accent]")
             
             if prompt.lower() in ["exit", "quit", "bye"]:
-                console.print("[bold yellow]Exiting Pixel-AI. Have a great day![/bold yellow]")
+                console.print("[bold accent]Exiting Pixel-AI. Have a great day![/bold accent]")
                 break
 
             # Thinking state
-            with console.status("[italic blue]Pixel is thinking...", spinner="bouncingBall"):
+            with console.status("[italic accent]Pixel is thinking...", spinner="bouncingBall"):
                 stream = model(
                     prompt, 
                     max_tokens=MAX_TOKENS, 
@@ -53,18 +67,19 @@ def run_llm():
             response_text = ""
             panel = Panel(
                 Markdown(""),
-                title="[bold blue]Pixel-AI[/bold blue]",
-                border_style="bright_blue",
-                padding=(1, 2)
+                title="[bold accent]Pixel-AI[/bold accent]",
+                border_style="accent",
+                padding=(1, 2),
+                title_align="left"
             )
 
             with Live(panel, console=console, refresh_per_second=20) as live:
                 for chunk in stream:
                     text = chunk['choices'][0]['text']
                     response_text += text
-                    # Update the panel content
-                    panel.renderable = Markdown(response_text)
+                    # Update the panel content with markdown
+                    panel.renderable = Markdown(response_text, justify="left")
                     live.refresh()
             
     except KeyboardInterrupt:
-        console.print("\n[bold yellow]KeyboardInterrupt detected. Exiting...[/bold yellow]")
+        console.print("\n[bold accent]Interrupted. Exiting...[/bold accent]")
