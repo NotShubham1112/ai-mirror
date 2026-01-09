@@ -123,4 +123,19 @@ This project prioritizes **Safety by Design**:
 Contributions are welcome! Please open an issue or pull request.
 
 ## 📄 License
-This project is open-source under the MIT License.
+This project is open-source under the [MIT License](LICENSE). Copyright &copy; 2026 Shubham Kambli.
+
+---
+
+## 👨‍💻 About the Creator
+
+**Shubham Kambli** (He/Him)  
+*Founder @x_conquestx | Building AI, Quant & Open-Source Products*
+
+Turning Research into Real Systems.  
+CSE @ B.Tech | Mumbai, Maharashtra, India 🇮🇳
+
+> "I build systems that bridge the gap between theoretical AI and practical, edge-deployed reality."
+
+[**Contact / Follow**](#) &bull; [**GitHub**](https://github.com/NotShubham1112)
+
