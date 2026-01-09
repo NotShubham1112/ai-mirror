@@ -53,18 +53,28 @@ llmemo/
 ## 🚀 Quick Start
 
 ### 1. Installation
+**Option A: For Users (Pip Install)**
 ```bash
-# Clone the repo
+# Clone and Install as a global command
 git clone https://github.com/NotShubham1112/ai-mirror.git
 cd ai-mirror
+pip install -e .
+```
 
-# Install dependencies
+**Option B: For Developers**
+```bash
+# Install dependencies normally
 pip install -r requirements_training.txt
-pip install rich  # For beautiful outputs
+pip install rich
 ```
 
 ### 2. Run the System
-To start chatting with **Pixel**:
+If you installed via **Option A**, you can run Pixel from anywhere:
+```bash
+pixel-chat
+```
+
+Otherwise, use the manual command:
 ```bash
 python src/run_ai_mirror.py
 ```

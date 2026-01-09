@@ -42,16 +42,21 @@ def main():
     # 1. LOAD COMPONENTS
     console.print("\n[1/5] Loading Safety & Memory Components...", style="bold yellow")
     try:
-        from safety_filter import SafetyFilter
-        from memory_manager import MemoryManager
+        from .safety_filter import SafetyFilter
+        from .memory_manager import MemoryManager
         
         safety = SafetyFilter()
+        # Default storage path relative to workspace
         memory = MemoryManager(storage_path="data/ai_mirror_memory.json")
         console.print("   ✓ Safety Filter active", style="green")
         console.print(f"   ✓ Memory active ({memory.get_stats()['total_interactions']} interactions)", style="green")
-    except ImportError as e:
-        console.print(f"   ❌ Failed to load components: {e}", style="bold red")
-        sys.exit(1)
+    except (ImportError, ValueError):
+        # Fallback for non-package run
+        from safety_filter import SafetyFilter
+        from memory_manager import MemoryManager
+        safety = SafetyFilter()
+        memory = MemoryManager(storage_path="data/ai_mirror_memory.json")
+        console.print("   ✓ Safety Filter (fallback)", style="green")
 
     # 2. INITIALIZE RAG
     console.print("\n[2/5] Initializing RAG Knowledge Base...", style="bold yellow")
